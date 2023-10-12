@@ -15,5 +15,13 @@ Imagine a scenario where a component deep within your application needs to check
 
 
 `SupabaseProvider` will give us all the info about the session.   
-`UserProvider` will provides us all the info  about the user.   
-`useUser` gives access to the context about the user.    
+`UserContext` is the context for user info.
+`UserProvider` will provides us all the info  about the user.
+`useUser` gives access to the context about the user. (commented code for better understanding)
+
+## Short summary of the authentication process
+
+1. Everything is wrapped around supabaseProvider. Value of session and client is passed to this provider.
+2. use()context allows us to access any particular value of the supabaseProvider.
+3. Auth is used for the GUI
+4. When user signs up, a user id is automatically created in the database for that user.
