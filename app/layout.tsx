@@ -6,6 +6,7 @@ import SupabaseProvider from '@/providers/SupabaseProvider'
 import UserProvider from '@/providers/UserProvider'
 import ModalProvider from '@/providers/ModalProvider'
 const font = Figtree({ subsets: ['latin'] })
+import ToasterProvider from '@/providers/ToasterProvider'
 
 export const metadata: Metadata = {
   title: 'Spotify clone',
@@ -20,6 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
+        <ToasterProvider/>
         <SupabaseProvider>
           <UserProvider>
             <ModalProvider/>
