@@ -1,6 +1,17 @@
+import getSongs from '@/actions/getSongs';
 import Header from '../../components/Header'
 import ListItem from '../../components/ListItem'
-export default function Home() {
+import PageContent from './components/PageContent';
+import { TbShoppingCartSearch } from 'react-icons/tb';
+
+export const revalidate = 0; //The data on this page will not be cached and the will always be up to date
+
+
+export default async function Home() {
+
+  const songs = await getSongs();
+
+
     return (
       <div className="bg-neutral-900 rounded-lg h-full w-full overflow-hidden overflow-y-auto">
        <Header>
@@ -18,6 +29,7 @@ export default function Home() {
         <div className='flex justify-between items-center'>
           <h1 className='text-white text-2xl font-semibold'>Newest Songs</h1>
         </div>
+        <PageContent songs={songs}/>
        </div>
       </div>
     )

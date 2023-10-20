@@ -57,4 +57,11 @@ export interface Subscription{
 }
 
 
-
+export interface Song{
+    id:String;
+    user_id: string;
+    author: string;
+    title: string;
+    song_path: string;
+    image_path: string;
+}
