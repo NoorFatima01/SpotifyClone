@@ -8,15 +8,17 @@ import { BiSearch } from "react-icons/bi";
 import Box from "./Box";
 import SidebarItem from "./SidebarItem";
 import Library from "./Library";
+import { Song } from "@/type";
 
 interface SidebarProps {
   children: React.ReactNode;
   //React.ReactNode. React.ReactNode is a type that can represent any node that could be rendered in React, such as strings, numbers, JSX elements, arrays, fragments, etc.
+  songs: Song[];
 }
 
 //React.FC<SidebarProps>: This is a generic type provided by React for functional components. FC stands for "Functional Component". By using React.FC<SidebarProps>, you're specifying that Sidebar is a functional component that expects props of type SidebarProps.
 
-const Sidebar: React.FC<SidebarProps> = ({ children }) => {
+const Sidebar: React.FC<SidebarProps> = ({ children, songs }) => {
   const pathname = usePathname();
 
   const routes = useMemo(
@@ -50,7 +52,9 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
             })}
           </div>
         </Box>
-        <Box className="overflow-y-auto h-full"><Library/></Box>
+        <Box className="overflow-y-auto h-full">
+          <Library songs={songs} />
+        </Box>
       </div>
       <main className="h-full flex-1 overflow-y-auto py-2">{children}</main>
     </div>

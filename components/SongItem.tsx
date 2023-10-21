@@ -8,10 +8,10 @@ import PlayButton from "./PlayButton";
 interface SongItemProps {
     data:Song;
     onClick:(id: string) => void;
-    key: string
+   
 }
 
-const SongItem: React.FC<SongItemProps> = ({data, onClick,key}) => {
+const SongItem: React.FC<SongItemProps> = ({data, onClick}) => {
 
   const imagePath = useLoadImage(data);
 
