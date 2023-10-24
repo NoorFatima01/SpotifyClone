@@ -25,3 +25,21 @@ Imagine a scenario where a component deep within your application needs to check
 2. use()context allows us to access any particular value of the supabaseProvider.
 3. Auth is used for the GUI
 4. When user signs up, a user id is automatically created in the database for that user.
+
+## Supabase Client Configuration
+
+## Why `createServerComponentClient`?
+
+As the name suggests, `createServerComponentClient` creates a Supabase client tailored to work with server-side tasks, while `createClientComponentClient` is designed for client-side tasks. Simply using `createClient` is not the ideal choice for tasks specific to the server side. For instance, we want our client to be 'aware' of the signed-in user and differentiate actions across multiple users (e.g., determining which songs have been uploaded by a particular user).
+
+## Supabase.auth.getSession() and Cookies
+
+In a standard client-side application, the Supabase client would utilize `localStorage` to manage the user session. However, when trying to retrieve the session on the server side, the server cannot access `localStorage`. Hence, we require a mechanism to transfer the user session from the client side to the server side, and this is where cookies come into play.
+
+## Why use Cookies in Authentication and Session Management
+
+When a user initially signs into a web application, the server dispatches a session or authentication token specifically for that user to the browser, which stores this data as a cookie. Consequently, every time the server requests authentication-requiring data from the browser, the latter sends this cookie back to the server. This process ensures that the user's session data is preserved and transferred between the browser and server, eliminating the need for repetitive sign-ins.
+
+Moreover, employing cookies for authentication means that we can avoid transmitting user passwords with authentication-requiring requests, providing a layer of protection for sensitive data. 
+
+One drawback of cookies is their expiration after a certain duration, necessitating user reauthentication. We can address this challenge using middleware. `Middleware.ts` refreshes the user session before loading server components, ensuring the Supabase client on the server acknowledges and honors an active user session.
