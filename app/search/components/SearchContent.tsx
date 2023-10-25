@@ -1,0 +1,42 @@
+'use client'
+
+import MediaItem from "@/components/MediaItem"
+import { Song } from "@/type"
+
+interface SearchContentProps {
+  songs:Song[]
+}
+
+const SearchContent: React.FC<SearchContentProps> = ({songs}) => {
+ 
+    if(songs.length === 0){
+      return(
+    <div
+    className="
+    flex
+    flex-col
+    gap-y-2">
+      No songs found.
+    </div>)
+    }
+
+
+    return(
+      <div className="
+      flex
+      flex-col
+      gap-y-2
+      w-full
+      px-6">
+        {songs.map((song) => (
+          <div key={song.id.toString()} className="flex items-center gap-x-4 w-full ">
+            <div className="flex-1">
+              <MediaItem key={song.id.toString()} onClick={() => {}} data={song}/>
+            </div>
+          </div>
+        ))}
+      </div>
+    )
+}
+
+export default SearchContent;
