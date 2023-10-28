@@ -43,3 +43,6 @@ When a user initially signs into a web application, the server dispatches a sess
 Moreover, employing cookies for authentication means that we can avoid transmitting user passwords with authentication-requiring requests, providing a layer of protection for sensitive data. 
 
 One drawback of cookies is their expiration after a certain duration, necessitating user reauthentication. We can address this challenge using middleware. `Middleware.ts` refreshes the user session before loading server components, ensuring the Supabase client on the server acknowledges and honors an active user session.
+
+
+>> TO DO: Look into how and why the 'use-sound' error for type decalration was resolved? Why did just creating the index.d.ts file and declaring module in it solved the issue? And why was it not reading from the files in node modules?
